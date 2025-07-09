@@ -33,12 +33,12 @@ void unlock(cioSync* ctx)
     LeaveCriticalSection(&ctx->lock);
 }
 
-void wait(cioSync* ctx)
+void waitSync(cioSync* ctx)
 {
     SleepConditionVariableCS(&ctx->cond, &ctx->lock, INFINITE);
 }
 
-void signal(cioSync* ctx, bool wakeAll)
+void signalSync(cioSync* ctx, bool wakeAll)
 {
     if (wakeAll)
         WakeAllConditionVariable(&ctx->cond);
